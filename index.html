@@ -53,12 +53,9 @@
       }
 
       hr {
-        color: var(--stone-150);
-        /*
-        I think there's an alternate solution here but this gets
-        the job done.
-        */
-        opacity: 30%;
+        border: none;
+        border-block-start: 1px solid var(--stone-150);
+        margin: 0;
       }
 
       .recipe {
@@ -74,7 +71,7 @@
       }
 
       .recipe__description {
-        margin-top: -0.5rem;
+        margin-block-start: -0.5rem;
       }
 
       .recipe__preparation-time {
@@ -89,12 +86,12 @@
       }
 
       .recipe__preparation-time .subtimes {
-        margin-top: 1rem;
+        margin-block-start: 1rem;
       }
 
       .recipe__content {
         /* Enabled flex here to use gap, alternative to margin's
-        without having to deal with bottom case */
+         without having to deal with bottom case */
         display: flex;
         flex-direction: column;
         gap: 2rem;
@@ -103,12 +100,12 @@
 
       .subheader + * {
         /*
-        Below every subheader, add 1.25rem of margin.
-        Used this instead of .subheader > margin-bottom, because
-        I used margin-top for all other spacing, so keeping it
-        consistent here.
-        ; */
-        margin-top: 1.25rem;
+         Below every subheader, add 1.25rem of margin.
+         Used this instead of .subheader > margin-bottom, because
+         I used margin-top for all other spacing, so keeping it
+         consistent here.
+         ; */
+        margin-block-start: 1.25rem;
       }
 
       .recipe__name {
@@ -138,8 +135,8 @@
 
       /* List styling */
       li {
-        margin-left: 1.25rem;
-        padding-left: 1.25rem;
+        margin-inline-start: 1.25rem;
+        padding-inline-start: 1.25rem;
       }
 
       ::marker {
@@ -152,30 +149,33 @@
       }
 
       li + li {
-        margin-top: 0.625rem;
+        margin-block-start: 0.625rem;
       }
 
       /* Table styling */
       .recipe__nutrition table {
         text-align: left;
+        border-spacing: 0;
         /* Sets table columns to be sized according to heading width
-        (instead of content size)
-        */
+         (instead of content size)
+         */
         table-layout: fixed;
 
         /* One collapsed border between cells instead of separately */
         border-collapse: collapse;
         width: 100%;
-        margin-top: 1rem;
+        margin-block-start: 1rem;
       }
 
       /* Add outline between every row */
       .recipe__nutrition tr + tr {
-        border-top: 1px solid var(--stone-150);
+        border-block-start: 1px solid var(--stone-150);
       }
 
-      .recipe__nutrition th {
-        padding: 0.5rem 0.5rem 0.5rem 2rem;
+      .recipe__nutrition th,
+      .recipe__nutrition td {
+        padding-block: 0.5rem;
+        padding-inline: 2rem 0.5rem;
         font-weight: 400;
       }
 
@@ -185,18 +185,18 @@
       }
 
       /*
-      On larger screens, open up recipe card to center
-      of screen.
-     */
-      @media (width >=768px) {
+       On larger screens, open up recipe card to center
+       of screen.
+      */
+      @media (min-width: 48em) {
         .recipe {
-          width: 44rem;
+          max-width: 44rem;
           border-radius: var(--border-radius-outer);
         }
 
         body {
-          padding-top: 2.5%;
-          padding-bottom: 2.5%;
+          padding-block-start: 2.5%;
+          padding-block-end: 2.5%;
         }
 
         .recipe__image {
@@ -204,7 +204,8 @@
         }
 
         .recipe__image-container {
-          padding: 5% 5% 0 5%;
+          padding-inline: 5%;
+          padding-block: 5% 0;
         }
       }
     </style>
